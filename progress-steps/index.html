@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Progress Stepps</title>
 
-    <link rel="stylesheet" href="style.css">
+    <!-- <link rel="stylesheet" href="style.css"> -->
     <style>
         * {
             box-sizing: border-box;
@@ -43,25 +43,24 @@
             position: relative;
         }
 
-        .progress::before {
+        #progress::before {
             content: '';
             background-color: grey;
             position: absolute;
             width: 150px;
-            top: 50%;
-            left: 30px;
-            transform: translateY(-50%);
             height: 4px;
             z-index: 0;
         }
 
-        .progress {
+        #progress {
             color: var(--blue);
-            background-color: grey;
+            background-color: var(--blue);
             position: absolute;
+            width: 0px;
             top: 50%;
-            left: 0;
+            left: 30px;
             height: 4px;
+            z-index: 1;
         }
 
         .circle {
@@ -72,7 +71,7 @@
             width: 30px;
             padding: 10px;
             margin: 0 10px;
-            border: 1px solid grey;
+            border: 2px solid grey;
             border-radius: 50%;
             transition: linear 0.5s;
             z-index: 1;
@@ -101,8 +100,8 @@
 
     <div class="container">
         <div class="progress-container">
-            <div class="progress"></div>
-            <div class="circle">1</div>
+            <div id="progress"></div>
+            <div class="circle active">1</div>
             <div class="circle">2</div>
             <div class="circle">3</div>
             <div class="circle">4</div>
@@ -119,18 +118,19 @@
     </div>
 
     <script>
-        let progress = 1;
-
+        let progress = 0;
+        let progressWidth = 0
         const circles = document.getElementsByClassName('circle');
         const prevButton = document.getElementById("prev")
         const nextButton = document.getElementById("next")
+        const progressBar = document.getElementById("progress")
 
 
         const checkButtons = () => {
-            if (progress === 1) {
+            if (progress === 0) {
                 prevButton.disabled = true
             }
-            else if (progress === 4) {
+            else if (progress === 3) {
                 nextButton.disabled = true
             }
             else {
@@ -142,12 +142,18 @@
         checkButtons();
 
         prevButton.addEventListener('click', () => {
+            circles[progress].classList.remove('active')
             progress--;
+            progressWidth -= 50
+            progressBar.style.width = `${progressWidth}px`;
             checkButtons();
         });
 
         nextButton.addEventListener('click', () => {
             progress++;
+            circles[progress].classList.add('active')
+            progressWidth += 50
+            progressBar.style.width = `${progressWidth}px`;
             checkButtons();
         });
 
