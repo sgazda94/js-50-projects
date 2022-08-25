@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        :root {
+            --green: #10b981;
+        }
+        body {
+            font-family: system-ui;
+            margin: 0;
+        }
+
+        .container {
+            display: flex;
+            width: 100%;
+            height: 100vh;
+            ;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .split {
+            width: 50%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: 0.5s ease-out;
+        }
+
+        .split:hover {
+            background-color: rgb(133, 46, 46);
+            width: 75%;
+        }
+
+        h2 {
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        a {
+            color: black;
+            text-decoration: none;
+            
+        }
+
+        .btn {
+            padding: 20px;
+            margin-top: 20px;
+            background: var(--green);
+            border: 2px solid var(--green);
+            border-radius: 5px;
+        }
+
+        #left {
+            background: url(/images/people1.jpg);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        #right {
+            background: url(/images/people2.jpg);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div id="left" class="split">
+            <h2>People 1</h2>
+            <a href="/" class="btn">Buy now</a>
+        </div>
+        <div id="right" class="split">
+            <h2>People 2</h2>
+            <a href="/" class="btn">Buy now</a>
+        </div>
+    </div>
+</body>
+
+</html>
